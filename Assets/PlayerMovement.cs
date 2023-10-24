@@ -25,6 +25,10 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayer()
     {
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
 
+        playerRigidBody.transform.Translate(Vector3.forward * speed * verticalInput * Time.deltaTime);
+        playerRigidBody.transform.Translate(Vector3.right * speed * horizontalInput * Time.deltaTime);
     }
 }
