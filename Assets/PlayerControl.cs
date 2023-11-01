@@ -17,13 +17,15 @@ public class PlayerControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //Horizontal Rotation
+        transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * 2f);
     }
 
     void FixedUpdate()
@@ -32,6 +34,6 @@ public class PlayerControl : MonoBehaviour
         float speed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
         newVelocity.x = Input.GetAxis("Vertical") * speed;
         newVelocity.z = Input.GetAxis("Horizontal") * speed;
-        rb.velocity = newVelocity;
+        rb.velocity = transform.TransformDirection(newVelocity);
     }
 }
